@@ -1,0 +1,11 @@
+.header{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 80%;
+    margin: 0 auto;
+    color: rgb(172, 208, 255);
+    background: #316956;
+    border-radius: .5rem;
+    height: 10rem;
+}
