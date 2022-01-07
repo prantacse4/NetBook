@@ -7,6 +7,11 @@ use Illuminate\Http\Request;
 
 class MyHomeController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+    
     public function index(){
 
         $articles = NetBook::all();
@@ -18,14 +23,41 @@ class MyHomeController extends Controller
         return view('pages.createnote');
     }
 
+    public function store(Request $request){
+
+        $request ->validate([
+            'article' => 'required|max:255',
+            'source' => 'required|max:255',
+            'description' => 'required'
+        ]);
+
+        NetBook::create($request ->all());
+        return redirect(route('index'))->with('message', 'Article created successfully.');
+    }
+
     public function contacts(){
 
         return view('pages.contacts');
     }
 
-    public function profile(){
+    public function updatenote($id){
+        $articles = NetBook::where('id',$id)->get();
+        return view('pages.update', compact('articles'));
+    }
 
-        return view('pages.profile');
+    public function update(Request $request, NetBook $netBook){
+        $request ->validate([
+            'article' => 'required|max:255',
+            'source' => 'required|max:255',
+            'description' => 'required'
+        ]);
+        $netBook->update($request ->all());
+        return redirect(route('index'))->with('message', 'Article updated successfully.');
+    }
+
+    public function delete(NetBook $netBook){
+        $netBook->delete();
+        return redirect(route('index'))->with('message', 'Article deleted successfully.');
     }
 
 

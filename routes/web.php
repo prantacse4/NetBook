@@ -16,7 +16,22 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('', [MyHomeController::class, 'index'])->name('index');
 Route::get('/createnote', [MyHomeController::class, 'createnote'])->name('createnote');
+Route::post('/store', [MyHomeController::class, 'store'])->name('store');
+Route::delete('/delete/{netBook}', [MyHomeController::class, 'delete'])->name('delete');
+Route::get('/updatenote/{id}', [MyHomeController::class, 'updatenote'])->name('updatenote');
+
+Route::put('/update/{netBook}', [MyHomeController::class, 'update'])->name('update');
+
+
 Route::get('/contacts', [MyHomeController::class, 'contacts'])->name('contacts');
 Route::get('/profile', [MyHomeController::class, 'profile'])->name('profile');
 
 
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

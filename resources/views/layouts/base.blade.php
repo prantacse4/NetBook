@@ -32,7 +32,11 @@
               </li>
 
               <li class="nav-item">
-                <a class="nav-link" href="{{ route('profile') }}">Profile</a>
+                <a class="nav-link" href="{{ route('profile') }}">{{ Auth::user()->name }}</a>
+              </li>
+
+              <li class="nav-item">
+                <form method="POST" class="d-inline text-white" action="{{ route('logout') }}"> @csrf <button class="nav-link btn btn-danger">Logout</button></form>
               </li>
               
               

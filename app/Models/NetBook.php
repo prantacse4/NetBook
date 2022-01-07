@@ -8,4 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class NetBook extends Model
 {
     use HasFactory;
+    protected $fillable = [
+        'article', 'source', 'description'
+    ];
 }
